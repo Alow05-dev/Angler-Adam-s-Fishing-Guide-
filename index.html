@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071318">
+  <title>CastIQ — Fishing Assistant</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="logo">Cast<span>IQ</span> 🎣</div>
+      <div class="badge">FISHING ASSISTANT</div>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">PLAN YOUR NEXT CAST</p>
+      <h1>Tell us where<br>you're fishing.</h1>
+      <p>CastIQ turns fishing conditions into a simple lure and bait game plan.</p>
+    </section>
+
+    <section class="card">
+      <label for="waterbody">WATERBODY</label>
+      <input id="waterbody" placeholder="Lake, reservoir, river..." value="Pine Flat Lake">
+
+      <div class="grid2">
+        <div>
+          <label for="species">TARGET SPECIES</label>
+          <select id="species"></select>
+        </div>
+        <div>
+          <label for="time">TIME</label>
+          <input id="time" type="time" value="06:30">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label for="date">DATE</label>
+          <input id="date" type="date">
+        </div>
+        <div>
+          <label for="sky">SKY</label>
+          <select id="sky">
+            <option value="partly">Partly cloudy</option>
+            <option value="sunny">Sunny</option>
+            <option value="overcast">Overcast</option>
+            <option value="rain">Rain</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div><label for="waterTemp">WATER °F</label><input id="waterTemp" type="number" value="68"></div>
+        <div><label for="wind">WIND MPH</label><input id="wind" type="number" value="8"></div>
+        <div><label for="clarity">CLARITY</label>
+          <select id="clarity"><option value="clear">Clear</option><option value="stained">Stained</option><option value="muddy">Muddy</option></select>
+        </div>
+      </div>
+
+      <button id="planBtn" class="primary">🎯 BUILD MY GAME PLAN</button>
+    </section>
+
+    <section class="card">
+      <div class="sectionHead"><h2>Conditions</h2><span>user inputs</span></div>
+      <div class="conditions">
+        <div>🌡️<b id="cWater">68°</b><small>Water</small></div>
+        <div>💨<b id="cWind">8</b><small>Wind mph</small></div>
+        <div>☁️<b id="cSky">Partly</b><small>Sky</small></div>
+        <div>💧<b id="cClarity">Clear</b><small>Clarity</small></div>
+      </div>
+    </section>
+
+    <section id="results" class="hidden">
+      <div class="card">
+        <div class="sectionHead"><h2>🎣 Your game plan</h2><span id="resultMeta"></span></div>
+        <div id="recommendations"></div>
+      </div>
+
+      <div class="card">
+        <div class="sectionHead"><h2>Not getting bites?</h2><span>adaptive mode</span></div>
+        <p class="muted">CastIQ changes presentation and lure profile instead of simply repeating the same recommendation.</p>
+        <button id="adjustBtn" class="secondary">🔄 CHANGE THE PLAN</button>
+        <div id="adjustment" class="tip hidden"></div>
+      </div>
+
+      <div class="card">
+        <div class="sectionHead"><h2>🎒 Tackle box</h2><span>prototype</span></div>
+        <p class="muted">Select the gear you already own and CastIQ will rank it against today's conditions.</p>
+        <div id="tackleList"></div>
+      </div>
+    </section>
+
+    <footer>CastIQ MVP • Recommendation engine v1</footer>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
