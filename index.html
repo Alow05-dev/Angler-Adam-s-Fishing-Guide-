@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#071017">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Angler Adam's Fishing Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero-bg"></div>
+      <div class="topbar">
+        <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <button class="icon-btn" id="searchBtn" aria-label="Search">⌕</button>
+      </div>
+      <div class="brand">
+        <div class="fish-logo">🐟</div>
+        <h1>ANGLER ADAM'S</h1>
+        <div class="brand-sub">FISHING GUIDE</div>
+        <p>SMARTER CONDITIONS. BETTER CATCHES.</p>
+      </div>
+      <nav class="quick-nav">
+        <button class="quick active" data-section="plan">📍 <span>Plan a Trip</span></button>
+        <button class="quick" data-section="tackle">🧰 <span>My Tackle</span></button>
+        <button class="quick" data-section="species">🐟 <span>Species</span></button>
+        <button class="quick" data-section="lakes">🗺️ <span>Lakes</span></button>
+        <button class="quick" data-section="learn">🎓 <span>Learn</span></button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="plan" class="page-section active-section">
+        <div class="panel conditions-panel">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">FISHING CONDITIONS</span>
+              <h2>Build your game plan</h2>
+              <p>Tell us where, what, and when. We'll match your conditions to a presentation.</p>
+            </div>
+            <button class="location-btn" id="locationBtn">◎ Use Location</button>
+          </div>
+
+          <div class="form-grid">
+            <label>WATERBODY
+              <input id="waterbody" value="Pine Flat Lake" placeholder="Lake, river or reservoir">
+            </label>
+            <label>TIME
+              <input id="time" type="time" value="06:30">
+            </label>
+            <label>TARGET SPECIES
+              <select id="species">
+                <option>Largemouth Bass</option>
+                <option>Smallmouth Bass</option>
+                <option>Trout</option>
+                <option>Crappie</option>
+                <option>Catfish</option>
+                <option>Striped Bass</option>
+                <option>Bluegill</option>
+              </select>
+            </label>
+            <label>SKY CONDITIONS
+              <select id="sky">
+                <option>Partly Cloudy</option>
+                <option>Sunny</option>
+                <option>Overcast</option>
+                <option>Rain</option>
+              </select>
+            </label>
+            <label>DATE
+              <input id="date" type="date">
+            </label>
+            <label>WIND MPH
+              <input id="wind" type="number" min="0" max="100" value="8">
+            </label>
+            <label>WATER TEMPERATURE (°F)
+              <input id="waterTemp" type="number" min="32" max="100" value="68">
+            </label>
+            <label>FISHING DEPTH
+              <select id="depth">
+                <option>0–5 ft</option>
+                <option selected>5–10 ft</option>
+                <option>10–20 ft</option>
+                <option>20–40 ft</option>
+                <option>40+ ft</option>
+              </select>
+            </label>
+            <label>FISHING FROM
+              <select id="platform">
+                <option>Shoreline</option>
+                <option>Boat</option>
+              </select>
+            </label>
+            <label>SETUP
+              <select id="setup">
+                <option>Baitcasting</option>
+                <option>Spinning</option>
+                <option>Downrigger</option>
+                <option>Fly Fishing</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>WATER CLARITY
+              <select id="clarity">
+                <option>Clear</option>
+                <option>Stained</option>
+                <option>Muddy</option>
+              </select>
+            </label>
+          </div>
+
+          <button class="primary-btn" id="buildBtn">🎯 BUILD MY GAME PLAN <span>›</span></button>
+          <div id="status" class="status" aria-live="polite"></div>
+        </div>
+
+        <section class="results-section">
+          <div class="results-header">
+            <div>
+              <span class="eyebrow">YOUR GAME PLAN</span>
+              <h2>Today's recommendations</h2>
+              <p id="summary">Based on your conditions and target species.</p>
+            </div>
+            <button class="outline-btn" id="saveTripBtn">♡ Save Trip</button>
+          </div>
+
+          <div class="result-tabs">
+            <button class="result-tab active" data-result="top">Top Picks</button>
+            <button class="result-tab" data-result="alternative">Alternative</button>
+            <button class="result-tab" data-result="technique">Techniques</button>
+            <button class="result-tab" data-result="location">Location Tips</button>
+          </div>
+
+          <div id="recommendations" class="recommendations"></div>
+          <div id="extraContent" class="extra-content"></div>
+        </section>
+      </section>
+
+      <section id="tackle" class="page-section">
+        <div class="panel">
+          <span class="eyebrow">MY TACKLE</span>
+          <h2>Your tackle box</h2>
+          <p>Add gear you already own. Recommendations will prioritize it.</p>
+          <div id="tackleList" class="tackle-list"></div>
+          <div class="add-tackle">
+            <input id="tackleInput" placeholder="e.g. Green Pumpkin Senko">
+            <button class="primary-small" id="addTackleBtn">Add</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="species" class="page-section">
+        <div class="panel">
+          <span class="eyebrow">SPECIES GUIDE</span>
+          <h2>Choose your target</h2>
+          <div id="speciesGrid" class="species-grid"></div>
+        </div>
+      </section>
+
+      <section id="lakes" class="page-section">
+        <div class="panel">
+          <span class="eyebrow">WATERBODY GUIDE</span>
+          <h2>Quick lake setup</h2>
+          <p>Pick a waterbody below to load a starting profile into the trip planner.</p>
+          <div id="lakeGrid" class="lake-grid"></div>
+        </div>
+      </section>
+
+      <section id="learn" class="page-section">
+        <div class="panel">
+          <span class="eyebrow">LEARN</span>
+          <h2>Fishing fundamentals</h2>
+          <div class="learn-list">
+            <article><b>🌡️ Water temperature</b><p>Use temperature to narrow the activity level and depth range.</p></article>
+            <article><b>💨 Wind</b><p>Wind can position bait and make moving presentations more useful.</p></article>
+            <article><b>💧 Clarity</b><p>Clear water generally rewards more natural colors and subtle presentations.</p></article>
+            <article><b>☁️ Sky</b><p>Cloud cover can change how aggressively fish roam and feed.</p></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bottom-nav">
+      <button class="bottom active" data-section="plan">⌂<small>Home</small></button>
+      <button class="bottom" data-section="lakes">🗺️<small>My Trips</small></button>
+      <button class="bottom search-main" id="bottomSearch">⌕</button>
+      <button class="bottom" data-section="tackle">🧰<small>Tackle Box</small></button>
+      <button class="bottom" data-section="learn">•••<small>More</small></button>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="main.js"></script>
+</body>
+</html>
